@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "discord.js": "latest",
+    "snekfetch": "latest",
+    "roblox.js": "latest"
+  }
+ 
+
+}
