@@ -50,6 +50,7 @@ bot.on('message', message => {
   if (cmd) {
     cmd.run(bot, message, args, em)
     console.log(`${message.author.username} used the ${loggedcmd} command.`)
+  }
 })
 
 
