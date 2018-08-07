@@ -5,9 +5,10 @@ module.exports.run = (bot, message, args, em) => {
   const name = args.join(' ');
   roblox.login('FreakingHulk', process.env.pw)
   roblox.getIdFromUsername(name).then(id => {
-    roblox.promote(groupid, id).catch(err => {
-      if (!err) message.channel.send(`Promoted ${roblox.getUsernameFromId(id)} in the group.`);
-      if (err) console.error(err)
+    roblox.promote(groupid, id).then(() => {
+      message.channel.send(`Promoted ${name}.`)
+    }).catch(err => {
+      console.error(err)
     })
   })
 }
