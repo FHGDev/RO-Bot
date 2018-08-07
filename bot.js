@@ -1,7 +1,8 @@
 const discord = require('discord.js');
 const roblox = require('roblox-js');
 const bot = new discord.Client();
-const prefix = 'ro;';
+const prefix = 'ro;'
+bot.login(process.env.tok)
 
 bot.commands = new discord.Collection();
 
