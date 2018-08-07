@@ -2,8 +2,8 @@ const discord = require('discord.js')
 const roblox = require('roblox-js')
 const groupid = 4173965
 module.exports.run = (bot, message, args, em) => {
-  const name = args[0]
-  const role = args[1]
+  const name = args[1]
+  const role = args[2]
   roblox.login('FreakingHulk', process.env.pw)
   roblox.getIdFromUsername(name).then(id => {
     roblox.setRank(groupid, id, role).then(() => {
