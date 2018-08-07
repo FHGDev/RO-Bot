@@ -1,60 +1,43 @@
-const discord = require('discord.js')
-
-const prefix = 'ro;'
-
-const snek = require('snekfetch')
-
-const roblox = require('roblox-js')
-
-const bot = new discord.Client()
-
-roblox.login('FreakingHulk', process.env.pw).then(i => {
-  console.log(`Logged in as ${i.userId}.`)
-    
-
-  
-  
-
-})
-                                                  
+const discord = require('discord.js');
+const roblox = require('roblox-js');
+const bot = new discord.Client();
+const prefix = 'ro;';
 
 bot.commands = new discord.Collection();
 
+console.log('Loading commands...')
+
 require('fs').readdir('./commands/', (err, files) => {
-  files.filter(f => f.split('.').pop() === 'js').forEach((f,i) => {
+  if (err) return console.log('Command Loading Failed!');
+  files.filter(f => f.split(".").pop() === "js").forEach((f,i) => {
     bot.commands.set(require(`./commands/${f}`).help.name, require(`./commands/${f}`))
-  })
-
-  })
-})
-
-
+  });
+});
 
 bot.on('ready', () => {
-  bot.user.setActivity('over Rangers of Fire', {type: "WATCHING"})
-  console.log('Ro-Bot Ready!')
-})
+  console.log('RO-Bot v0.0.1 Ready!');
+  bot.user.setActivity('over Rangers of Fire', {type: "WATCHING"});
+});
+
+roblox.login('FreakingHulk', process.env.pw).then(ui => {
+  console.log(`Logged in as FreakingHulk (${ui.UserId}).`);
+});
 
 bot.on('message', message => {
   if (!message.guild) return;
-  if (!message.author.bot) return;
+  if (message.author.bot) return;
+  
   const mArray = message.content.split(" ");
-  const args = mArray.slice(1)
-  const loggedcmd = mArray[0].slice(prefix.length)
-  const cmd = bot.commands.get(loggedcmd)
+  const args = mArray.slice(1);
+  const logcmd = mArray[0].slice(prefix.length);
+  const cmd = bot.commands.get(logcmd);
   const em = new discord.RichEmbed()
   .setTitle("Ro-Bot")
   .setTimestamp()
-  .setColor("RANDOM")
-
+  .setColor("RANDOM");
+  
   if (cmd) {
-    cmd.run(bot, message, args, em)
-    console.log(`${message.author.username} used the ${loggedcmd} command.`)
+    cmd.run(bot, message, args, em);
+    console.log(`${message.author.username} used the ${logcmd} command.`);
   }
-})
-
-
-
-bot.login(process.env.tok)
-
- 
+});
