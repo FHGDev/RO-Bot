@@ -3,7 +3,7 @@ const roblox = require('roblox-js')
 const groupid = 4173965
 module.exports.run = (bot, message, args, em) => {
   const name = args[0]
-  const role = args.slice(1).join(' ')
+  const role = args[1]
   roblox.login('FreakingHulk', process.env.pw)
   roblox.getIdFromUsername(name).then(id => {
     roblox.setRank(groupid, id, role).then(() => {
