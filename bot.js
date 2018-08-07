@@ -21,7 +21,7 @@ bot.on('ready', () => {
 });
 
 roblox.login('FreakingHulk', process.env.pw).then(ui => {
-  console.log(`Logged in as FreakingHulk (${ui.userId}).`);
+  console.log(`Logged in as FreakingHulk.`);
 });
 
 bot.on('message', message => {
