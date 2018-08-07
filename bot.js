@@ -4,7 +4,7 @@ const prefix = 'ro;'
 
 const snek = require('snekfetch')
 
-const roblox = require('roblox.js')
+const roblox = require('roblox-js')
 
 const bot = new discord.Client()
 
